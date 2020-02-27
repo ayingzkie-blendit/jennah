@@ -1,0 +1,9 @@
+package co.ulimit.jennah.socket
+
+enum JennahMessageType {
+	TEST_TYPE,
+	NOTIFICATION_NEW,
+	NOTIFICATION_RELOAD_,
+	STOCK_REQUEST_LIST_NEW,
+	STOCK_REQUEST_LIST_RELOAD,
+}
