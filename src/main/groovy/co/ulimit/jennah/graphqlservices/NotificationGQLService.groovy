@@ -31,9 +31,9 @@ class NotificationGQLService {
 	
 	//============== All Queries ====================
 	
-	@GraphQLQuery(name = "mynotifications", description = "Get All My Notifications")
-	List<Notification> mynotifications(@GraphQLArgument(name = "id") UUID id) {
-		def results = notificationRepository.findTop10ByToOrderByDatenotifiedDesc(id)
+	@GraphQLQuery(name = "notifications", description = "Get All My Notifications")
+	List<Notification> notifications(@GraphQLArgument(name = "id") UUID id) {
+		def results = notificationRepository.findTop10ByToOrderByDateNotifiedDesc(id)
 		return results
 	}
 }

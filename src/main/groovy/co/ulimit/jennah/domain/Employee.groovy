@@ -54,7 +54,7 @@ class Employee extends AbstractAuditingEntity {
 	LocalDateTime dob
 
 	@GraphQLQuery
-	@Formula("concat(last_name , coalesce(', ' || nullif(first_name,'') , ''), coalesce(' ' || nullif(middle_name,'') , ''), coalesce(' ' || nullif(name_suffix,'') , ''))")
+	@Formula("concat(last_name , coalesce(', ' || nullif(first_name,'') , ''), coalesce(' ' || nullif(middle_name,'') , ''), coalesce(' ' || nullif(middle_name,''), ''))")
 	String fullName
 
 }

@@ -2,9 +2,11 @@ package co.ulimit.jennah.graphqlservices
 
 import co.ulimit.jennah.dao.UserDao
 import co.ulimit.jennah.domain.Authority
+import co.ulimit.jennah.domain.Employee
 import co.ulimit.jennah.domain.Permission
 import co.ulimit.jennah.domain.PersistentToken
 import co.ulimit.jennah.domain.User
+import co.ulimit.jennah.repository.EmployeeRepository
 import co.ulimit.jennah.repository.UserRepository
 import co.ulimit.jennah.security.SecurityUtils
 import groovy.transform.TypeChecked
@@ -24,7 +26,16 @@ class UserService {
 	private UserRepository userRepository
 
 	@Autowired
+	private EmployeeRepository employeeRepository
+
+	@Autowired
 	UserDao userDao
+
+	@GraphQLQuery(name = "account", description = "Get User by login")
+	Employee findOneByLogin() {
+		User user = userRepository.findOneByLogin(SecurityUtils.currentLogin())
+		return employeeRepository.findOneByUser(user)
+	}
 
 	@GraphQLQuery(name = "authorities", description = "Get all User authorities")
 	List<Authority> getAuthorities(@GraphQLContext User user) {

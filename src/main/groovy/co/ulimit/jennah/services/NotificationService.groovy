@@ -4,6 +4,7 @@ import co.ulimit.jennah.domain.Employee
 import co.ulimit.jennah.domain.Notification
 import co.ulimit.jennah.repository.EmployeeRepository
 import co.ulimit.jennah.repository.NotificationRepository
+import co.ulimit.jennah.security.SecurityUtils
 import co.ulimit.jennah.socket.JennahMessageType
 import co.ulimit.jennah.socket.JennahWebsocketMessage
 import co.ulimit.jennah.socket.SocketService
@@ -28,15 +29,17 @@ class NotificationService {
 	EmployeeRepository employeeRepository
 	
 	void notifyUser(UUID userid, String title, String message) {
-		Employee e = employeeRepository.findByUsername(co.ulimit.jennah.security.SecurityUtils.currentLogin()).first()
+		Employee e = employeeRepository.findByUsername(SecurityUtils.currentLogin()).first()
 		Employee eto = employeeRepository.getOne(userid)
+
 		Notification notification = new Notification()
 		notification.message = message
 		notification.to = userid
 		notification.from = e.id
 		notification.title = title
-		notification.datenotified = Instant.now()
+		notification.dateNotified = Instant.now()
 		notificationRepository.save(notification)
+
 		JennahWebsocketMessage payload = new JennahWebsocketMessage(e.fullName, message, title, JennahMessageType.NOTIFICATION_NEW)
 		socketService.notificationToUser(payload, eto.user.login)
 	}

@@ -14,4 +14,10 @@
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/4_ace_update_emp_depts.sql"
              relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/5_ace_notifications.sql"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/6_ace_alter_notifs.sql"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/7_ace_alter_employee.sql"
+             relativeToChangelogFile="false"/>
 </databaseChangeLog>

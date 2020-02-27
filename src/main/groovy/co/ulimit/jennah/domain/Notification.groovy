@@ -45,17 +45,17 @@ class Notification {
 	
 	@GraphQLQuery
 	@Column(name = "date_notified", columnDefinition = "timestamp")
-	Instant datenotified
+	Instant dateNotified
 	
 	@GraphQLQuery
 	@Column(name = "date_seen", columnDefinition = "timestamp")
-	Instant date_seen
+	Instant dateSeen
 	
 	@GraphQLQuery
 	@Transient
-	String date_notified_string() {
-		if (datenotified != null)
-			return new LocalDateTime(datenotified.toEpochMilli()).toString("MM/dd/yyyy hh:mma")
+	String dateNotifiedString() {
+		if (dateNotified != null)
+			return new LocalDateTime(dateNotified.toEpochMilli()).toString("MM/dd/yyyy hh:mma")
 		else
 			return null
 	}
