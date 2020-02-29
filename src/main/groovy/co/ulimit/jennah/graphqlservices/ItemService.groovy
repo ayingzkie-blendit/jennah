@@ -1,9 +1,7 @@
 package co.ulimit.jennah.graphqlservices
 
-import co.ulimit.jennah.domain.Category
-import co.ulimit.jennah.domain.Department
-import co.ulimit.jennah.repository.CategoryRepository
-import co.ulimit.jennah.repository.DepartmentRepository
+import co.ulimit.jennah.domain.Item
+import co.ulimit.jennah.repository.ItemRepository
 import co.ulimit.jennah.services.GeneratorService
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.transform.TypeChecked
@@ -16,11 +14,10 @@ import org.springframework.stereotype.Component
 @TypeChecked
 @Component
 @GraphQLApi
-class CategoryService {
+class ItemService {
 
 	@Autowired
-	private CategoryRepository categoryRepository
-	
+	private ItemRepository itemRepository
 
 	@Autowired
 	GeneratorService generatorService
@@ -30,9 +27,8 @@ class CategoryService {
 
 	//============== All Queries ====================
 
-	@GraphQLQuery(name = "getCategories", description = "Get All Categories")
-	List<Category> getCategories(@GraphQLArgument(name = "filter") String filter) {
-		categoryRepository.getCategories(filter).sort {it.createdDate}
+	@GraphQLQuery(name = "getItems", description = "Get All Items")
+	List<Item> getItems(@GraphQLArgument(name = "filter") String filter) {
+		itemRepository.getItems(filter).sort {it.createdDate}
 	}
-
 }

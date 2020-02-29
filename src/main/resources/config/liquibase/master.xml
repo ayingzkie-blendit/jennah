@@ -22,4 +22,8 @@
              relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/8_ace_create_categories.sql"
              relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/9_ace_create_items.sql"
+             relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/10_ace_alter_items.sql"
+             relativeToChangelogFile="false"/>
 </databaseChangeLog>
